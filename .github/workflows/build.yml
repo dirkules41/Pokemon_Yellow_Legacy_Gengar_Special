@@ -1,0 +1,41 @@
+name: Build ROM
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: 📥 Checkout repo
+      uses: actions/checkout@v3
+
+    - name: 🛠️ Install dependencies
+      run: |
+        sudo apt update
+        sudo apt install -y build-essential git libpng-dev cmake
+
+    - name: 🔧 Build RGBDS v0.6.0 from source
+      run: |
+        git clone https://github.com/gbdev/rgbds.git
+        cd rgbds
+        git checkout v0.6.0
+        make
+        sudo make install
+        rgbasm -V  # Version anzeigen zur Sicherheit
+
+    - name: 🔨 Build ROM
+      run: |
+        make clean
+        make
+        mv pokeyellow.gbc "PKM YL Gengar Special Vx.x.gbc"
+
+    - name: 📦 Upload ROM Artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: PKM-YL-Gengar-Special-ROM
+        path: '*.gbc'
