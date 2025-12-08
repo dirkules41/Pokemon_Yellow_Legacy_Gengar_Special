@@ -1064,6 +1064,21 @@ OaksLabPlayerReceivedMonText:
 	ld a, LIGHT_BALL_GSC
 	ld [wPartyMon1CatchRate], a
 	call DisablePikachuOverworldSpriteDrawing
+
+	; --- Gib Gastly ---
+    ld a, GASTLY
+    ld [wd11e], a
+    ld [wcf91], a
+    call GetMonName
+    ld a, $1
+    ld [wDoNotWaitForButtonPressAfterDisplayingText], a
+    ld a, 5
+    ld [wCurEnemyLVL], a
+    ld a, GASTLY
+    ld [wd11e], a
+    ld [wcf91], a
+    call AddPartyMon
+
 	SetEvent EVENT_GOT_STARTER
 	ld hl, wd72e
 	set 3, [hl]
