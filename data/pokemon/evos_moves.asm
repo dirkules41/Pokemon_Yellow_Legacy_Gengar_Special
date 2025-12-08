@@ -400,10 +400,12 @@ GengarEvosMoves:
 ; Evolutions
 	db 0
 ; Learnset
-	db 10, SMOG
-	db 15, PSYWAVE
+	db 8, LICK
+	db 12, HEADBUTT
+	db 18, PSYBEAM
+	db 24, HYPNOSIS
 	db 36, NIGHT_SHADE
-	db 55, HYPNOSIS
+	db 42, PSYCHIC_M
 	db 55, DREAM_EATER
 	db 0
 
@@ -555,11 +557,12 @@ GastlyEvosMoves:
 	db EVOLVE_LEVEL, 25, HAUNTER
 	db 0
 ; Learnset
-	db 10, SMOG
-	db 15, PSYWAVE
-	db 23, POISON_GAS
+	db 8, LICK
+	db 12, HEADBUTT
+	db 18, PSYBEAM
+	db 24, HYPNOSIS
 	db 36, NIGHT_SHADE
-	db 55, HYPNOSIS
+	db 42, PSYCHIC_M
 	db 55, DREAM_EATER
 	db 0
 
@@ -2037,10 +2040,12 @@ HaunterEvosMoves:
 	db EVOLVE_LEVEL, 42, GENGAR
 	db 0
 ; Learnset
-	db 10, SMOG
-	db 15, PSYWAVE
+	db 8, LICK
+	db 12, HEADBUTT
+	db 18, PSYBEAM
+	db 24, HYPNOSIS
 	db 36, NIGHT_SHADE
-	db 55, HYPNOSIS
+	db 42, PSYCHIC_M
 	db 55, DREAM_EATER
 	db 0
 
