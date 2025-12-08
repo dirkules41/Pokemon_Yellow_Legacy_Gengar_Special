@@ -252,8 +252,9 @@ _OaksLabOakGivesText::
 	line "I caught it in"
 	cont "the wild and it's"
 	cont "not tame yet."
-	line "Look, the wild #MON"
-	cont "comes with a ghost!"
+	line "Look, the wild"
+  cont "#MON comes with"
+	cont "a ghost!"
 	prompt
 
 _OaksLabReceivedText::
