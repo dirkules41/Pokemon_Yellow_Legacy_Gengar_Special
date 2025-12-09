@@ -1,3 +1,4 @@
+
 _OaksLabRivalGrampsIsntAroundText::
 	text "<RIVAL>: Yo"
 	line "<PLAYER>! Gramps"
@@ -252,9 +253,6 @@ _OaksLabOakGivesText::
 	line "I caught it in"
 	cont "the wild and it's"
 	cont "not tame yet."
-	cont "Look, the wild"
-  cont "#MON comes"
-	cont "with a ghost!"
 	prompt
 
 _OaksLabReceivedText::
