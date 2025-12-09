@@ -1,3 +1,4 @@
+
 OaksLab_Script:
 	CheckEvent EVENT_PALLET_AFTER_GETTING_POKEBALLS_2
 	call nz, OaksLabLoadTextPointers2Script
@@ -588,38 +589,6 @@ OaksLabOakGivesPokedexScript:
 	SetEvent EVENT_GOT_POKEDEX
 	ld a, SCRIPT_VIRIDIANCITY_AFTER_POKEDEX
 	ld [wViridianCityCurScript], a
-
-; --- Check if we must give Gastly ---
-ld hl, wPikachuMood
-bit 1, [hl]
-jr z, .skip_gastly
-
-    ; Marker löschen
-    res 1, [hl]
-
-    ; GASTLY geben
-    ld a, GASTLY
-    ld [wd11e], a
-    ld [wcf91], a
-    call GetMonName
-    ld a, $1
-    ld [wDoNotWaitForButtonPressAfterDisplayingText], a
-
-    xor a
-    ld [wMonDataLocation], a
-    ld a, 5
-    ld [wCurEnemyLVL], a
-    ld a, GASTLY
-    ld [wd11e], a
-    ld [wcf91], a
-    call AddPartyMon
-
-    ; “received” Text
-    ld hl, OaksLabReceivedText
-    call PrintText
-
-.skip_gastly
-
 	SetEvent EVENT_OAK_GOT_PARCEL
 	ld a, HS_LYING_OLD_MAN
 	ld [wMissableObjectIndex], a
