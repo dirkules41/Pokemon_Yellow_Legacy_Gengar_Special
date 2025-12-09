@@ -611,6 +611,21 @@ OaksLabOakGivesPokedexScript:
 
 	ld a, SCRIPT_OAKSLAB_RIVAL_LEAVES_WITH_POKEDEX
 	ld [wOaksLabCurScript], a
+
+; --- Give Gastly after Pokedex ---
+    ld a, GASTLY
+    ld [wd11e], a
+    ld [wcf91], a
+    call GetMonName
+    ld a, $1
+    ld [wDoNotWaitForButtonPressAfterDisplayingText], a
+    ld a, 5
+    ld [wCurEnemyLVL], a
+    ld a, GASTLY
+    ld [wd11e], a
+    ld [wcf91], a
+    call AddPartyMon
+
 	ret
 
 OaksLabRivalLeavesWithPokedexScript:
@@ -1043,8 +1058,6 @@ OaksLabRivalTakesText5:
 
 OaksLabPlayerReceivedMonText:
 	text_asm
-
-	; --- Pikachu geben ---
 	ld a, STARTER_PIKACHU
 	ld [wPlayerStarter], a
 	ld [wd11e], a
@@ -1055,7 +1068,6 @@ OaksLabPlayerReceivedMonText:
 	call PrintText
 	ld hl, OaksLabReceivedText
 	call PrintText
-
 	xor a
 	ld [wMonDataLocation], a
 	ld a, 5
@@ -1064,32 +1076,12 @@ OaksLabPlayerReceivedMonText:
 	ld [wd11e], a
 	ld [wcf91], a
 	call AddPartyMon
-
 	ld a, LIGHT_BALL_GSC
 	ld [wPartyMon1CatchRate], a
 	call DisablePikachuOverworldSpriteDrawing
-
-	; --- Starter-Flag direkt setzen, um Softlock zu verhindern ---
 	SetEvent EVENT_GOT_STARTER
-
-	; --- Pikachu Following-Flag setzen ---
 	ld hl, wd72e
 	set 3, [hl]
-
-	; --- Gastly geben ---
-	ld a, GASTLY
-	ld [wd11e], a
-	ld [wcf91], a
-	call GetMonName
-	ld a, $1
-	ld [wDoNotWaitForButtonPressAfterDisplayingText], a
-	ld a, 5
-	ld [wCurEnemyLVL], a
-	ld a, GASTLY
-	ld [wd11e], a
-	ld [wcf91], a
-	call AddPartyMon
-
 	jp TextScriptEnd
 
 OaksLabOakGivesText:
