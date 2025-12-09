@@ -1044,9 +1044,6 @@ OaksLabRivalTakesText5:
 OaksLabPlayerReceivedMonText:
 	text_asm
 
-	; --- Starter-Flag direkt setzen, um Softlock zu verhindern ---
-	SetEvent EVENT_GOT_STARTER
-
 	; --- Pikachu geben ---
 	ld a, STARTER_PIKACHU
 	ld [wPlayerStarter], a
@@ -1072,6 +1069,13 @@ OaksLabPlayerReceivedMonText:
 	ld [wPartyMon1CatchRate], a
 	call DisablePikachuOverworldSpriteDrawing
 
+	; --- Starter-Flag direkt setzen, um Softlock zu verhindern ---
+	SetEvent EVENT_GOT_STARTER
+
+	; --- Pikachu Following-Flag setzen ---
+	ld hl, wd72e
+	set 3, [hl]
+
 	; --- Gastly geben ---
 	ld a, GASTLY
 	ld [wd11e], a
@@ -1085,10 +1089,6 @@ OaksLabPlayerReceivedMonText:
 	ld [wd11e], a
 	ld [wcf91], a
 	call AddPartyMon
-
-	; --- Pikachu Following-Flag setzen ---
-	ld hl, wd72e
-	set 3, [hl]
 
 	jp TextScriptEnd
 
